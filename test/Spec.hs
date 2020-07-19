@@ -12,6 +12,24 @@ initialBoard = "OO \
 finalBoard =   "OOX\
                \ X \
                \   "
+firstRowXBoard =   "XXX\
+                   \   \
+                   \   "
+secondRowXBoard =   "   \
+                    \XXX\
+                    \   "
+thirdRowXBoard =   "   \
+                   \   \
+                   \XXX"
+firstColOBoard =   "O  \
+                   \O  \
+                   \O  "
+secondColOBoard =   " O \
+                    \ O \
+                    \ O "
+thirdColOBoard =   "  O\
+                   \  O\
+                   \  O"
 
 
 main :: IO ()
@@ -36,3 +54,10 @@ main = hspec $ do
                 isStart initBoard `shouldBe` True
             it "should be false for a nonempty board" $ do
                 isStart (GameState (Board finalBoard) X) `shouldBe` False
+
+        context "isWinFor" $ do
+            it "should be a win for X on the first row" $ do
+                isWinFor (GameState (Board firstRowXBoard) X) X `shouldBe` True
+        context "isEnd" $ do
+            it "should determine it is the end for X" $ do
+                isEnd (GameState (Board firstRowXBoard) X) `shouldBe` True
