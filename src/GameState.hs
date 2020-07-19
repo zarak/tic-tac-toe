@@ -74,6 +74,6 @@ isWinFor (GameState (Board board) _) player =
         where rows = chunksOf dim board
               isMatchAll = (==True) . all (\x -> x == (head . show) player)
 
-
+-- TODO: Add condition for a tie
 isEnd :: GameState Board Turn -> Bool
-isEnd (GameState (Board board) _) = undefined
+isEnd game = isWinFor game X || isWinFor game O
