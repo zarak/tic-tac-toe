@@ -28,3 +28,6 @@ main = hspec $ do
         context "move" $ do
             it "should make a move" $ do
                 move (GameState (Board initialBoard) X) 2 `shouldBe` (GameState (Board finalBoard) O)
+        context "possibleMoves" $ do
+            it "should list the next available moves" $ do
+                possibleMoves (GameState (Board initialBoard) X) `shouldBe` [2, 3, 5, 6, 7, 8]

@@ -62,6 +62,6 @@ move (GameState (Board board) turn) idx =
     GameState (Board newBoard) (switchTurn turn)
 
 
+possibleMoves = undefined
 isStart = undefined
 isEnd = undefined
-
