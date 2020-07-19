@@ -1,6 +1,19 @@
 import GameState
 import Test.Hspec
 
+renderedBoard = " X | X | 2 \n\
+                \-----------\n\
+                \ 3 | O | O \n\
+                \-----------\n\
+                \ 6 | 7 | 8 \n"
+initialBoard = "OO \
+               \ X \
+               \   "
+finalBoard =   "OOX\
+               \ X \
+               \   "
+
+
 main :: IO ()
 main = hspec $ do
     describe "GameState" $ do
@@ -11,8 +24,7 @@ main = hspec $ do
             it "should render a position" $ do
                 render (Board $ "XX "
                               ++" OO"
-                              ++"   ") `shouldBe` " X | X | 2 \n\
-                                                  \-----------\n\
-                                                  \ 3 | O | O \n\
-                                                  \-----------\n\
-                                                  \ 6 | 7 | 8 \n"
+                              ++"   ") `shouldBe` renderedBoard
+        context "move" $ do
+            it "should make a move" $ do
+                move (GameState (Board initialBoard) X) 2 `shouldBe` (GameState (Board finalBoard) O)

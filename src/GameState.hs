@@ -39,3 +39,18 @@ render (Board board) =
     chunksOf dim .
     map (\(i, c) -> " " ++ (if c == ' ' then show i else [c]) ++ " ") $ 
     zip [0..] board
+
+switchTurn :: Turn -> Turn
+switchTurn X = O
+switchTurn O = X
+
+move :: GameState Board Turn -> Int -> GameState Board Turn
+move (GameState (Board board) turn) idx =
+    let newBoard = zipWith (\i c -> if i == idx then (head . show) turn else c) [0..] board
+    in
+    GameState (Board newBoard) (switchTurn turn)
+
+
+isStart = undefined
+isEnd = undefined
+
