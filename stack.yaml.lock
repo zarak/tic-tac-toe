@@ -3,7 +3,14 @@
 # For more information, please see the documentation at:
 #   https://docs.haskellstack.org/en/stable/lock_files
 
-packages: []
+packages:
+- completed:
+    hackage: paint-2.0.0@sha256:b892916be73af98bd62372df7cee15a917bcea7345e00dfed3b02086cdd2c956,1584
+    pantry-tree:
+      size: 381
+      sha256: 2859026653c228f4e72b87f520d9dc80e4387a28235d97bf15b87ee5e90fad15
+  original:
+    hackage: paint-2.0.0@sha256:b892916be73af98bd62372df7cee15a917bcea7345e00dfed3b02086cdd2c956,1584
 snapshots:
 - completed:
     size: 531701

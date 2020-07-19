@@ -39,7 +39,8 @@ packages:
 # - git: https://github.com/commercialhaskell/stack.git
 #   commit: e7b331f14bcffb8367cd58fbfc8b40ec7642100a
 #
-# extra-deps: []
+extra-deps:
+  - paint-2.0.0@sha256:b892916be73af98bd62372df7cee15a917bcea7345e00dfed3b02086cdd2c956,1584
 
 # Override default flag values for local packages and extra-deps
 # flags: {}
