@@ -6,30 +6,30 @@ renderedBoard = " X | X | 2 \n\
                 \ 3 | O | O \n\
                 \-----------\n\
                 \ 6 | 7 | 8 \n"
-initialBoard = "OO \
-               \ X \
-               \   "
-finalBoard =   "OOX\
-               \ X \
-               \   "
-firstRowXBoard =   "XXX\
-                   \   \
-                   \   "
-secondRowXBoard =   "   \
-                    \XXX\
-                    \   "
-thirdRowXBoard =   "   \
-                   \   \
-                   \XXX"
-firstColOBoard =   "O  \
-                   \O  \
-                   \O  "
-secondColOBoard =   " O \
-                    \ O \
-                    \ O "
-thirdColOBoard =   "  O\
-                   \  O\
-                   \  O"
+initialBoard =       "OO \
+                     \ X \
+                     \   "
+finalBoard =         "OOX\
+                     \ X \
+                     \   "
+firstRowXBoard =     "XXX\
+                     \   \
+                     \   "
+secondRowXBoard =    "   \
+                     \XXX\
+                     \   "
+thirdRowXBoard =     "   \
+                     \   \
+                     \XXX"
+firstColOBoard =     "O  \
+                     \O  \
+                     \O  "
+secondColOBoard =    " O \
+                     \ O \
+                     \ O "
+thirdColOBoard =     "  O\
+                     \  O\
+                     \  O"
 
 
 main :: IO ()

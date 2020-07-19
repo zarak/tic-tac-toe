@@ -70,8 +70,9 @@ isStart (GameState (Board board) _) = all (==' ') board
 
 isWinFor :: GameState Board Turn -> Player -> Bool
 isWinFor (GameState (Board board) _) player =
-    any ((==True) . all (\x -> x == (head . show) player)) rows
+    any isMatchAll rows || any isMatchAll (transpose rows)
         where rows = chunksOf dim board
+              isMatchAll = (==True) . all (\x -> x == (head . show) player)
 
 
 isEnd :: GameState Board Turn -> Bool
