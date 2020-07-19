@@ -1,6 +1,10 @@
+{-# LANGUAGE OverloadedStrings #-}
 module Main where
 
 import GameState
 
+testBoard = Board "XXO X O  "
+
 main :: IO ()
-main = putStrLn "test"
+main = putStr $ "Test Board\n" ++ show testBoard
+

@@ -1,5 +1,6 @@
 module GameState where
 
+import Text.Paint
 import Data.List
 import Data.List.Split
 import Data.Function
@@ -16,7 +17,7 @@ newtype Board
   deriving Eq
 
 instance Show Board where
-    show = render
+    show = colorize
 
 data GameState board turn
     = GameState board turn 
@@ -28,8 +29,18 @@ instance (Show board, Show turn) => Show (GameState board turn) where
 dim = 3
 size = dim^2
 
+red = Paint Maroon Default []
+blue = Paint Blue Default []
+
 initBoard :: GameState Board Turn
 initBoard = GameState (Board $ replicate size ' ') X 
+
+colorize :: Board -> String
+colorize board = concatMap f (render board)
+    where f c
+            | c == 'X' = paint red [c]
+            | c == 'O' = paint blue [c]
+            | otherwise = [c]
 
 render :: Board -> String
 render (Board board) =
