@@ -36,8 +36,8 @@ initBoard :: GameState Board Turn
 initBoard = GameState (Board $ replicate size ' ') X 
 
 colorize :: Board -> String
-colorize board = concatMap f (render board)
-    where f c
+colorize board = concatMap applyColor (render board)
+    where applyColor c
             | c == 'X' = paint red [c]
             | c == 'O' = paint blue [c]
             | otherwise = [c]
@@ -61,7 +61,9 @@ move (GameState (Board board) turn) idx =
     in
     GameState (Board newBoard) (switchTurn turn)
 
+possibleMoves :: GameState Board Turn -> [Int]
+possibleMoves (GameState (Board board) turn) =
+    map fst . filter ((==' ') . snd) $ zip [0..] board
 
-possibleMoves = undefined
 isStart = undefined
 isEnd = undefined
