@@ -61,6 +61,12 @@ main = hspec $ do
                 isWinFor (GameState (Board secondRowXBoard) X) X `shouldBe` True
             it "should be a win for X on the third row" $ do
                 isWinFor (GameState (Board thirdRowXBoard) X) X `shouldBe` True
+            it "should be a win for O on the first column" $ do
+                isWinFor (GameState (Board firstColOBoard) X) O `shouldBe` True
+            it "should be a win for O on the second column" $ do
+                isWinFor (GameState (Board secondColOBoard) X) O `shouldBe` True
+            it "should be a win for O on the third column" $ do
+                isWinFor (GameState (Board thirdColOBoard) X) O `shouldBe` True
         context "isEnd" $ do
             it "should determine it is the end for X" $ do
                 isEnd (GameState (Board firstRowXBoard) X) `shouldBe` True
