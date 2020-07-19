@@ -68,4 +68,11 @@ possibleMoves (GameState (Board board) turn) =
 isStart :: GameState Board Turn -> Bool
 isStart (GameState (Board board) _) = all (==' ') board
 
-isEnd = undefined
+isWinFor :: GameState Board Turn -> Player -> Bool
+isWinFor (GameState (Board board) _) player =
+    any ((==True) . all (\x -> x == (head . show) player)) rows
+        where rows = chunksOf dim board
+
+
+isEnd :: GameState Board Turn -> Bool
+isEnd (GameState (Board board) _) = undefined

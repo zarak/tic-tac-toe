@@ -54,10 +54,13 @@ main = hspec $ do
                 isStart initBoard `shouldBe` True
             it "should be false for a nonempty board" $ do
                 isStart (GameState (Board finalBoard) X) `shouldBe` False
-
         context "isWinFor" $ do
             it "should be a win for X on the first row" $ do
                 isWinFor (GameState (Board firstRowXBoard) X) X `shouldBe` True
+            it "should be a win for X on the second row" $ do
+                isWinFor (GameState (Board secondRowXBoard) X) X `shouldBe` True
+            it "should be a win for X on the third row" $ do
+                isWinFor (GameState (Board thirdRowXBoard) X) X `shouldBe` True
         context "isEnd" $ do
             it "should determine it is the end for X" $ do
                 isEnd (GameState (Board firstRowXBoard) X) `shouldBe` True
