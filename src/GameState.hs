@@ -65,5 +65,7 @@ possibleMoves :: GameState Board Turn -> [Int]
 possibleMoves (GameState (Board board) turn) =
     map fst . filter ((==' ') . snd) $ zip [0..] board
 
-isStart = undefined
+isStart :: GameState Board Turn -> Bool
+isStart (GameState (Board board) _) = all (==' ') board
+
 isEnd = undefined

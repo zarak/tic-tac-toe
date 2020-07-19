@@ -31,3 +31,6 @@ main = hspec $ do
         context "possibleMoves" $ do
             it "should list the next available moves" $ do
                 possibleMoves (GameState (Board initialBoard) X) `shouldBe` [2, 3, 5, 6, 7, 8]
+        context "isStart" $ do
+            it "should be true for the starting board" $ do
+                isStart initBoard `shouldBe` True
