@@ -13,17 +13,32 @@ type Turn = Player
 
 newtype Board
   = Board String
-  deriving (Eq, Show)
+  deriving Eq
 
-data GameState 
-    = GameState Board Turn 
-    deriving (Eq, Show)
+instance Show Board where
+    show = render
+
+data GameState board turn
+    = GameState board turn 
+    deriving Eq
+
+instance (Show board, Show turn) => Show (GameState board turn) where
+    show (GameState board turn) = "\n" ++ show board ++ "\nTurn: " ++ show turn
+
+instance Functor (GameState board) where
+    fmap f (GameState board turn) = GameState board (f turn)
 
 dim = 3
 size = dim^2
 
-initBoard :: GameState
+initBoard :: GameState Board Turn
 initBoard = GameState (Board $ replicate size ' ') X 
 
-render :: GameState -> String
-render (GameState (Board board) turn) = undefined
+render :: Board -> String
+render (Board board) =
+    unlines .
+    intersperse (replicate 11 '-') .
+    map (intercalate "|") .
+    chunksOf dim .
+    map (\(i, c) -> " " ++ (if c == ' ' then show i else [c]) ++ " ") $ 
+    zip [0..] board

@@ -9,10 +9,10 @@ main = hspec $ do
                 initBoard `shouldBe` (GameState (Board $ "   " ++ "   " ++ "   ") X)
         context "render" $ do
             it "should render a position" $ do
-                render (GameState (Board $ "XX "
-                                 ++" OO"
-                                 ++"   ") X) `shouldBe` " X | X | 2 \n\
-                                                        \-----------\n\
-                                                        \ 3 | O | O \n\
-                                                        \-----------\n\
-                                                        \ 6 | 7 | 8 \n"
+                render (Board $ "XX "
+                              ++" OO"
+                              ++"   ") `shouldBe` " X | X | 2 \n\
+                                                  \-----------\n\
+                                                  \ 3 | O | O \n\
+                                                  \-----------\n\
+                                                  \ 6 | 7 | 8 \n"
