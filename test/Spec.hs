@@ -34,3 +34,5 @@ main = hspec $ do
         context "isStart" $ do
             it "should be true for the starting board" $ do
                 isStart initBoard `shouldBe` True
+            it "should be false for a nonempty board" $ do
+                isStart (GameState (Board finalBoard) X) `shouldBe` False
