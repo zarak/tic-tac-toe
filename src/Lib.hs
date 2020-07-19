@@ -10,8 +10,8 @@ newtype TicTacToe a = TicTacToe2
     { board :: Three -> Three -> a 
     }
 
-instance Show (TicTacToe a) where
-    show (TicTacToe2 a) = "test"
+instance Show f => Show (TicTacToe f) where
+    show (TicTacToe2 f) = show (f One One)
 
 emptyBoard :: TicTacToe (Maybe Bool)
 emptyBoard = TicTacToe2 $ const $ const Nothing
