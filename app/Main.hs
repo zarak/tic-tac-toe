@@ -1,6 +1,6 @@
 module Main where
 
-import Lib
+import GameState
 
 main :: IO ()
-main = someFunc
+main = putStrLn "test"

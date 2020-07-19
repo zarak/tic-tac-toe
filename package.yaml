@@ -1,10 +1,10 @@
 name:                tic-tac-toe
 version:             0.1.0.0
-github:              "githubuser/tic-tac-toe"
+github:              "zarak/tic-tac-toe"
 license:             BSD3
-author:              "Author name here"
+author:              "Zarak Mahmud"
 maintainer:          "example@example.com"
-copyright:           "2020 Author name here"
+copyright:           "2020 Zarak Mahmud"
 
 extra-source-files:
 - README.md
@@ -21,6 +21,7 @@ description:         Please see the README on GitHub at <https://github.com/gith
 
 dependencies:
 - base >= 4.7 && < 5
+- split
 
 library:
   source-dirs: src
@@ -46,3 +47,4 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - tic-tac-toe
+    - hspec
