@@ -70,9 +70,9 @@ isStart (GameState (Board board) _) = all (==' ') board
 
 isWinFor :: GameState Board Turn -> Player -> Bool
 isWinFor (GameState (Board board) _) player =
-    any isMatchAll rows || any isMatchAll (transpose rows)
+    any consecutive rows || any consecutive (transpose rows)
         where rows = chunksOf dim board
-              isMatchAll = (==True) . all (\x -> x == (head . show) player)
+              consecutive = (==True) . all (\x -> x == (head . show) player)
 
 -- TODO: Add condition for a tie
 isEnd :: GameState Board Turn -> Bool
