@@ -32,9 +32,11 @@ size = dim^2
 red = Paint Maroon Default []
 blue = Paint Blue Default []
 
+-- |The state of the game upon initialization.
 initBoard :: GameState Board Turn
 initBoard = GameState (Board $ replicate size ' ') X 
 
+-- |Color 'X' red and 'O' blue in the terminal.
 colorize :: Board -> String
 colorize board = concatMap applyColor (render board)
     where applyColor c
@@ -42,6 +44,7 @@ colorize board = concatMap applyColor (render board)
             | c == 'O' = paint blue [c]
             | otherwise = [c]
 
+-- |Display the board as a user-friendly string.
 render :: Board -> String
 render (Board board) =
     unlines .
@@ -51,23 +54,29 @@ render (Board board) =
     map (\(i, c) -> " " ++ (if c == ' ' then show i else [c]) ++ " ") $ 
     zip [0..] board
 
+-- |Alternate turns between 'X' and 'O'
 switchTurn :: Turn -> Turn
 switchTurn X = O
 switchTurn O = X
 
+-- |'move' marks the desired position with the symbol corresponding
+-- |to the current player.
 move :: GameState Board Turn -> Int -> GameState Board Turn
 move (GameState (Board board) turn) idx =
     let newBoard = zipWith (\i c -> if i == idx then (head . show) turn else c) [0..] board
     in
     GameState (Board newBoard) (switchTurn turn)
 
+-- |'possibleMoves' returns a list of the remaining valid moves.
 possibleMoves :: GameState Board Turn -> [Int]
 possibleMoves (GameState (Board board) turn) =
     map fst . filter ((==' ') . snd) $ zip [0..] board
 
+-- |Determine whether the game board is empty.
 isStart :: GameState Board Turn -> Bool
 isStart (GameState (Board board) _) = all (==' ') board
 
+-- |Determine whether 'Player' has achieved the victory condition.
 isWinFor :: GameState Board Turn -> Player -> Bool
 isWinFor (GameState (Board board) _) player =
     any consecutive rows 
@@ -80,6 +89,7 @@ isWinFor (GameState (Board board) _) player =
               offDiagIndex = [dim-1, dim*2-2 .. size-dim]
               --offDiagIndex = [2, 4, 6]
 
+-- |Determine whether the game has ended.
 isEnd :: GameState Board Turn -> Bool
 isEnd game = isWinFor game X || isWinFor game O || tiedGame
     where tiedGame = null (possibleMoves game)
