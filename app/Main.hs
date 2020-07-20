@@ -35,6 +35,7 @@ runGame :: GameState Board Player -> IO ()
 runGame game = forever $ do
     gameOver game
     print game
+    putStrLn "Enter move> "
     move <- getLine
     let idx = validate move
      in case idx of 
