@@ -87,6 +87,7 @@ main = hspec $ do
                 isWinFor (GameState (Board secondColOBoard) X) O `shouldBe` True
             it "should be a win for O on the third column" $ do
                 isWinFor (GameState (Board thirdColOBoard) X) O `shouldBe` True
+
             it "should be a win for O on the main diagonal" $ do
                 isWinFor (GameState (Board mainDiagOBoard) X) O `shouldBe` True
             it "should be a win for O on the off diagonal" $ do

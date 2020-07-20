@@ -72,11 +72,13 @@ isWinFor :: GameState Board Turn -> Player -> Bool
 isWinFor (GameState (Board board) _) player =
     any consecutive rows 
     || any consecutive (transpose rows) 
-    || (all ((==(head . show) player) . (board!!)) mainDiagIndex)
+    || all ((==(head . show) player) . (board!!)) mainDiagIndex
+    || all ((==(head . show) player) . (board!!)) offDiagIndex
         where rows = chunksOf dim board
               consecutive = (==True) . all (\x -> x == (head . show) player)
               mainDiagIndex = [0, dim+1 .. size-1]
-              offDiagIndex = [dim-1, dim*2-2 .. size-2]
+              offDiagIndex = [dim-1, dim*2-2 .. size-dim]
+              --offDiagIndex = [2, 4, 6]
 
 isEnd :: GameState Board Turn -> Bool
 isEnd game = isWinFor game X || isWinFor game O || tiedGame
