@@ -42,6 +42,10 @@ mainDiagXBoard =     "X  \
 offDiagXBoard =      "  X\
                      \ X \
                      \X  "
+tiedBoard =          "OXO\
+                     \OXO\
+                     \XOX"
+
 
 
 main :: IO ()
@@ -87,6 +91,12 @@ main = hspec $ do
                 isWinFor (GameState (Board mainDiagOBoard) X) O `shouldBe` True
             it "should be a win for O on the off diagonal" $ do
                 isWinFor (GameState (Board offDiagOBoard) X) O `shouldBe` True
+            it "should be a win for X on the off diagonal" $ do
+                isWinFor (GameState (Board offDiagXBoard) X) X `shouldBe` True
+            it "should be a win for X on the main diagonal" $ do
+                isWinFor (GameState (Board mainDiagXBoard) X) X `shouldBe` True
         context "isEnd" $ do
-            it "should determine it is the end for X" $ do
-                isEnd (GameState (Board firstRowXBoard) X) `shouldBe` True
+            it "should determine the game is over because X won" $ do
+                isEnd (GameState (Board firstRowXBoard) O) `shouldBe` True
+            it "should determine the game is over due to a tie" $ do
+                isEnd (GameState (Board tiedBoard) X) `shouldBe` True
