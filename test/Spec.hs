@@ -55,6 +55,10 @@ main = hspec $ do
             it "should be false for a nonempty board" $ do
                 isStart (GameState (Board finalBoard) X) `shouldBe` False
         context "isWinFor" $ do
+            it "should not be a win for X" $ do
+                isWinFor initBoard X `shouldBe` False
+            it "should not be a win for O" $ do
+                isWinFor initBoard O `shouldBe` False
             it "should be a win for X on the first row" $ do
                 isWinFor (GameState (Board firstRowXBoard) X) X `shouldBe` True
             it "should be a win for X on the second row" $ do
