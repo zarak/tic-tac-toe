@@ -30,6 +30,18 @@ secondColOBoard =    " O \
 thirdColOBoard =     "  O\
                      \  O\
                      \  O"
+mainDiagOBoard =     "O  \
+                     \ O \
+                     \  O"
+offDiagOBoard =      "  O\
+                     \ O \
+                     \O  "
+mainDiagXBoard =     "X  \
+                     \ X \
+                     \  X"
+offDiagXBoard =      "  X\
+                     \ X \
+                     \X  "
 
 
 main :: IO ()
@@ -71,6 +83,10 @@ main = hspec $ do
                 isWinFor (GameState (Board secondColOBoard) X) O `shouldBe` True
             it "should be a win for O on the third column" $ do
                 isWinFor (GameState (Board thirdColOBoard) X) O `shouldBe` True
+            it "should be a win for O on the main diagonal" $ do
+                isWinFor (GameState (Board mainDiagOBoard) X) O `shouldBe` True
+            it "should be a win for O on the off diagonal" $ do
+                isWinFor (GameState (Board offDiagOBoard) X) O `shouldBe` True
         context "isEnd" $ do
             it "should determine it is the end for X" $ do
                 isEnd (GameState (Board firstRowXBoard) X) `shouldBe` True
