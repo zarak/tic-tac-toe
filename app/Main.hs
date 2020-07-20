@@ -6,22 +6,33 @@ import System.Exit (exitSuccess)
 import System.Random (randomRIO)
 
 handleMove :: GameState Board Player -> Int -> IO (GameState Board Player)
-handleMove game idx = do return (move game idx)
+handleMove game idx = return (move game idx)
 
 gameOver :: GameState Board Player -> IO ()
-gameOver game =
-    if (isEnd game) 
-       then do
-           putStrLn "Game over!" 
-           exitSuccess 
-       else return ()
+gameOver game
+  | game `isWinFor` X = do 
+      print game
+      putStrLn "Player X wins!" 
+      exitSuccess 
+  | game `isWinFor` O = do
+      print game
+      putStrLn "Player O wins!" 
+      exitSuccess 
+  | isEnd game = do
+      print game
+      putStrLn "Game tied"
+      exitSuccess
+  | otherwise = return ()
 
 runGame :: GameState Board Player -> IO ()
 runGame game = forever $ do
     gameOver game
     print game
     move <- getLine
-    handleMove game (read move :: Int) >>= runGame
+    let idx = read move :: Int 
+     in case idx `elem` possibleMoves game of 
+          True -> handleMove game idx >>= runGame 
+          False -> putStrLn "Invalid move"
 
 main :: IO ()
 main = do
