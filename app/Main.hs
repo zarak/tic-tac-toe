@@ -10,9 +10,11 @@ handleMove game idx = do return (move game idx)
 
 gameOver :: GameState Board Player -> IO ()
 gameOver game =
-    when (isEnd game) do 
-        putStrLn "Game over!"
-        exitSuccess
+    if (isEnd game) 
+       then do
+           putStrLn "Game over!" 
+           exitSuccess 
+       else return ()
 
 runGame :: GameState Board Player -> IO ()
 runGame game = forever $ do
