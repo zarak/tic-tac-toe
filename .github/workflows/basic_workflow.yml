@@ -4,6 +4,9 @@ name: Continuous Integration
 # This section makes sure that jobs only executed when either a pull request is opened against
 # `master` or, when a change is pushed to an existing pull request.
 on:
+  push:
+    branches:
+      - master
   pull_request: { "branches": [ "master" ] }
 
 jobs:
