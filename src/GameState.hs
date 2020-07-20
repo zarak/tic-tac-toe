@@ -70,10 +70,14 @@ isStart (GameState (Board board) _) = all (==' ') board
 
 isWinFor :: GameState Board Turn -> Player -> Bool
 isWinFor (GameState (Board board) _) player =
-    any consecutive rows || any consecutive (transpose rows)
+    any consecutive rows 
+    || any consecutive (transpose rows) 
+    || (all ((==(head . show) player) . (board!!)) mainDiagIndex)
         where rows = chunksOf dim board
               consecutive = (==True) . all (\x -> x == (head . show) player)
+              mainDiagIndex = [0, dim+1 .. size-1]
+              offDiagIndex = [dim-1, dim*2-2 .. size-2]
 
--- TODO: Add condition for a tie
 isEnd :: GameState Board Turn -> Bool
-isEnd game = isWinFor game X || isWinFor game O
+isEnd game = isWinFor game X || isWinFor game O || tiedGame
+    where tiedGame = null (possibleMoves game)
