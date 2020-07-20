@@ -4,10 +4,13 @@ name: Continuous Integration
 # This section makes sure that jobs only executed when either a pull request is opened against
 # `master` or, when a change is pushed to an existing pull request.
 on:
+  # Adding a new source of events when things get pushed to `master`
   push:
     branches:
       - master
-  pull_request: { "branches": [ "master" ] }
+  pull_request:
+    branches:
+      - master
 
 jobs:
   build:
@@ -60,6 +63,20 @@ jobs:
 
     - name: 🔨 Build & Test
       run: |
-        # Stack does all sort of exotic manipulations in the terminal with the build output. This
-        # can be the source of unexpected issues in emulated terminals, hence `--no-terminal`.
-        stack --no-terminal test --bench --no-run-benchmarks 
+        # Notice the addition of `--haddock` and `--no-haddock-deps`. 
+        stack --no-terminal test --bench --no-run-benchmarks --haddock --no-haddock-deps
+        # Ideally, we would use `stack path --local-doc-root`, but this is unfortunately broken
+        # since stack-2.1.1 (see also: https://github.com/commercialhaskell/stack/issues/4892)
+        PKG_NAME=$(cat *.cabal | grep "name:" | sed "s/name:\s*\(.*\)/\1/")
+        mkdir -p dist/haddock  && mv $(stack path --local-install-root)/doc/$PKG_NAME-*/* dist/haddock
+    - name: 📘 Publish Documentation
+      # The publication is restricted to one job type only, so that it doesn't get re-published if
+      # we are running this on multiple environments. More importantly, it's only published for
+      # events of type 'push' to prevent external contribution from triggering it!
+      if: matrix.os == 'ubuntu-latest' && github.event_name == 'push'
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        # Nothing to configure here, this is already available in the environment
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: dist
+        enable_jekyll: true
