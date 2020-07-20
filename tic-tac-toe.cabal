@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 6111bbe1028093bcd651aacb1d4d07e17f2cde96fa18eec4152e972d3ed0d093
+-- hash: 9a104dd03b32424bcb82e185c4024386d36e4d158071f09434db05f2e4651f13
 
 name:           tic-tac-toe
 version:        0.1.0.0
@@ -35,6 +35,7 @@ library
   build-depends:
       base >=4.7 && <5
     , paint
+    , random
     , split
     , text
   default-language: Haskell2010
@@ -49,6 +50,7 @@ executable tic-tac-toe-exe
   build-depends:
       base >=4.7 && <5
     , paint
+    , random
     , split
     , text
     , tic-tac-toe
@@ -66,6 +68,7 @@ test-suite tic-tac-toe-test
       base >=4.7 && <5
     , hspec
     , paint
+    , random
     , split
     , text
     , tic-tac-toe
