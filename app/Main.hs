@@ -1,5 +1,6 @@
 module Main where
 
+import Data.Char
 import GameState
 import Control.Monad (forever, when)
 import System.Exit (exitSuccess)
@@ -24,15 +25,21 @@ gameOver game
       exitSuccess
   | otherwise = return ()
 
+validate :: String -> Maybe Int
+validate s =
+    if (not . null) s && (isDigit . head $ s)
+       then Just (digitToInt . head $ s)
+       else Nothing
+
 runGame :: GameState Board Player -> IO ()
 runGame game = forever $ do
     gameOver game
     print game
     move <- getLine
-    let idx = read move :: Int 
-     in case idx `elem` possibleMoves game of 
-          True -> handleMove game idx >>= runGame 
-          False -> putStrLn "Invalid move"
+    let idx = validate move
+     in case idx of 
+          Just idx -> if idx `elem` possibleMoves game then handleMove game idx >>= runGame else putStrLn "Invalid move"
+          Nothing -> putStrLn "Invalid move"
 
 main :: IO ()
 main = do
