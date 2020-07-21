@@ -18,6 +18,9 @@ X :: Player
 
 -- | Player O
 O :: Player
+
+-- | A type alias to clarify the semantics of the <a>GameState</a> product
+--   type.
 type Turn = Player
 newtype Board
 
