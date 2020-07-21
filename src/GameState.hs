@@ -46,10 +46,14 @@ data GameState board turn
 instance (Show board, Show turn) => Show (GameState board turn) where
     show (GameState board turn) = "\n" ++ show board ++ "\nTurn: " ++ show turn
 
+-- |The length of the side of the board - default value is 3.
 dim = 3
+-- |The number of cells in the board - \( \dim^2 \).
 size = dim^2
 
+-- |The color of 'X'.
 red = Paint Maroon Default []
+-- |The color of 'O'.
 blue = Paint Blue Default []
 
 -- |The state of the game upon initialization.
@@ -67,11 +71,11 @@ colorize board = concatMap applyColor (render board)
 -- |Display the board as a user-friendly string.
 --
 -- >>> render (Board "XOX OO X ")
--- >  0 | 1 | 2
--- > -----------
--- >  3 | 4 | 5
--- > -----------
--- >  6 | 7 | 8
+--  0 | 1 | 2
+-- -----------
+--  3 | 4 | 5
+-- -----------
+--  6 | 7 | 8
 render :: Board -> String
 render (Board board) =
     unlines .
