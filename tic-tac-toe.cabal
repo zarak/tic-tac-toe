@@ -4,15 +4,15 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 9a104dd03b32424bcb82e185c4024386d36e4d158071f09434db05f2e4651f13
+-- hash: 0b129d4802ac5fbab5171cbec98be3e1e87530ae87fe2a64fe4b2ae31293ee72
 
 name:           tic-tac-toe
 version:        0.1.0.0
-description:    Please see the README on GitHub at <https://github.com/githubuser/tic-tac-toe#readme>
+description:    Please see the README on GitHub at <https://github.com/zarak/tic-tac-toe#readme>
 homepage:       https://github.com/zarak/tic-tac-toe#readme
 bug-reports:    https://github.com/zarak/tic-tac-toe/issues
 author:         Zarak Mahmud
-maintainer:     example@example.com
+maintainer:     zarak@hotmail.ca
 copyright:      2020 Zarak Mahmud
 license:        BSD3
 license-file:   LICENSE
