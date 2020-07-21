@@ -36,7 +36,7 @@ GameState :: board -> turn -> GameState board turn
 --   &lt;math&gt; within this documentation.
 dim :: Int
 
--- | The number of cells in the board - &lt;math&gt;.
+-- | The number of cells in the board: &lt;math&gt;.
 size :: Int
 
 -- | The color of <a>X</a>.
