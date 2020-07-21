@@ -27,9 +27,17 @@ data GameState board turn
 --   turn can also be represented as alternative data structures (such as a
 --   string, or a list of <a>X</a> for board)
 GameState :: board -> turn -> GameState board turn
+
+-- | The length of the side of the board - default value is 3.
 dim :: Int
+
+-- | The number of cells in the board - &lt;math&gt;.
 size :: Int
+
+-- | The color of <a>X</a>.
 red :: Paint
+
+-- | The color of <a>O</a>.
 blue :: Paint
 
 -- | The state of the game upon initialization.
@@ -42,11 +50,11 @@ colorize :: Board -> String
 --   
 --   <pre>
 --   &gt;&gt;&gt; render (Board "XOX OO X ")
---   &gt;  0 | 1 | 2
---   &gt; -----------
---   &gt;  3 | 4 | 5
---   &gt; -----------
---   &gt;  6 | 7 | 8
+--    0 | 1 | 2
+--   -----------
+--    3 | 4 | 5
+--   -----------
+--    6 | 7 | 8
 --   </pre>
 render :: Board -> String
 
