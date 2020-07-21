@@ -38,13 +38,24 @@ initBoard :: GameState Board Turn
 -- | Color <a>X</a> red and <a>O</a> blue in the terminal.
 colorize :: Board -> String
 
--- | Display the board as a user-friendly string. &gt;&gt;&gt; render
---   (Board "XOX OO X ") &gt; 0 | 1 | 2 &gt; ----------- &gt; 3 | 4 | 5
---   &gt; ----------- &gt; 6 | 7 | 8
+-- | Display the board as a user-friendly string.
+--   
+--   <pre>
+--   &gt;&gt;&gt; render (Board "XOX OO X ")
+--   &gt;  0 | 1 | 2
+--   &gt; -----------
+--   &gt;  3 | 4 | 5
+--   &gt; -----------
+--   &gt;  6 | 7 | 8
+--   </pre>
 render :: Board -> String
 
--- | Alternate turns between <a>X</a> and <a>O</a> &gt;&gt;&gt; switchTurn
---   X O
+-- | Alternate turns between <a>X</a> and <a>O</a>
+--   
+--   <pre>
+--   &gt;&gt;&gt; switchTurn X
+--   O
+--   </pre>
 switchTurn :: Turn -> Turn
 
 -- | <a>move</a> marks the desired position with the symbol corresponding
@@ -52,7 +63,11 @@ switchTurn :: Turn -> Turn
 move :: GameState Board Turn -> Int -> GameState Board Turn
 
 -- | <a>possibleMoves</a> returns a list of the remaining valid moves.
---   &gt;&gt;&gt; possibleMoves (GameState (Board "XXXOOOXX ") O) [8]
+--   
+--   <pre>
+--   &gt;&gt;&gt; possibleMoves (GameState (Board "XXXOOOXX ") O)
+--   [8]
+--   </pre>
 possibleMoves :: GameState Board Turn -> [Int]
 
 -- | Determine whether the game board is empty.
