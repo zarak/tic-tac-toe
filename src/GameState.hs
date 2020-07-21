@@ -31,7 +31,7 @@ newtype Board
 
 -- |A board is displayed in the terminal
 --  wih the following color scheme:
---  red X, blue O, and white for everything else.
+--  red 'X', blue 'O', and white for everything else.
 instance Show Board where
     show = colorize
 
@@ -65,6 +65,7 @@ colorize board = concatMap applyColor (render board)
             | otherwise = [c]
 
 -- |Display the board as a user-friendly string.
+--
 -- >>> render (Board "XOX OO X ")
 -- >  0 | 1 | 2
 -- > -----------
@@ -81,6 +82,7 @@ render (Board board) =
     zip [0..] board
 
 -- |Alternate turns between 'X' and 'O'
+--
 -- >>> switchTurn X
 -- O
 switchTurn :: Turn -> Turn
@@ -96,6 +98,7 @@ move (GameState (Board board) turn) idx =
     GameState (Board newBoard) (switchTurn turn)
 
 -- |'possibleMoves' returns a list of the remaining valid moves.
+--
 -- >>> possibleMoves (GameState (Board "XXXOOOXX ") O)
 -- [8]
 possibleMoves :: GameState Board Turn -> [Int]
