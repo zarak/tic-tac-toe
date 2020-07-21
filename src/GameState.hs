@@ -23,6 +23,7 @@ data Player
     | O                         -- ^ Player O
     deriving (Show, Eq, Enum)
 
+-- |A type alias to clarify the semantics of the 'GameState' product type.
 type Turn = Player
 
 newtype Board
