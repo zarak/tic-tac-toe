@@ -20,6 +20,10 @@ X :: Player
 O :: Player
 type Turn = Player
 newtype Board
+
+-- | <a>Board</a> takes a string with the following conventions: The
+--   character X represents Player <a>X</a>. The character O represents
+--   Player <a>O</a>. A space represents an empty cell.
 Board :: String -> Board
 data GameState board turn
 
