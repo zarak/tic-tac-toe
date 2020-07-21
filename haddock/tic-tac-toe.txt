@@ -28,7 +28,8 @@ data GameState board turn
 --   string, or a list of <a>X</a> for board)
 GameState :: board -> turn -> GameState board turn
 
--- | The length of the side of the board - default value is 3.
+-- | The length of the side of the board - default value is 3. Denoted as
+--   &lt;math&gt; within this documentation.
 dim :: Int
 
 -- | The number of cells in the board - &lt;math&gt;.
@@ -82,6 +83,9 @@ possibleMoves :: GameState Board Turn -> [Int]
 isStart :: GameState Board Turn -> Bool
 
 -- | Determine whether <a>Player</a> has achieved the victory condition.
+--   
+--   The main diagonal is the sequence &lt;math&gt;. The off diagonal is
+--   the sequence &lt;math&gt;.
 isWinFor :: GameState Board Turn -> Player -> Bool
 
 -- | Determine whether the game has ended.
