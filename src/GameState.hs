@@ -47,8 +47,9 @@ instance (Show board, Show turn) => Show (GameState board turn) where
     show (GameState board turn) = "\n" ++ show board ++ "\nTurn: " ++ show turn
 
 -- |The length of the side of the board - default value is 3.
+-- Denoted as \( d \) within this documentation.
 dim = 3
--- |The number of cells in the board - \( \dim^2 \).
+-- |The number of cells in the board - \( s = d^2 \).
 size = dim^2
 
 -- |The color of 'X'.
@@ -114,6 +115,9 @@ isStart :: GameState Board Turn -> Bool
 isStart (GameState (Board board) _) = all (==' ') board
 
 -- |Determine whether 'Player' has achieved the victory condition.
+--
+-- The main diagonal is the sequence \( \{ 0, d+1, \cdots, s-1 \} \).
+-- The off diagonal is the sequence \( \{ d-1, 2d-2, \cdots, s-d \} \).
 isWinFor :: GameState Board Turn -> Player -> Bool
 isWinFor (GameState (Board board) _) player =
     any consecutive rows 
