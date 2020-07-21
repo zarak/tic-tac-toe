@@ -23,9 +23,9 @@ newtype Board
 Board :: String -> Board
 data GameState board turn
 
--- | <a>GameState</a> accepts polymorphic types so that the board | and/or
---   turn can also be represented as alternative | data structures (such as
---   a string, or a list of <a>X</a> for board)
+-- | <a>GameState</a> accepts polymorphic types so that the board and/or
+--   turn can also be represented as alternative data structures (such as a
+--   string, or a list of <a>X</a> for board)
 GameState :: board -> turn -> GameState board turn
 dim :: Int
 size :: Int
@@ -38,17 +38,21 @@ initBoard :: GameState Board Turn
 -- | Color <a>X</a> red and <a>O</a> blue in the terminal.
 colorize :: Board -> String
 
--- | Display the board as a user-friendly string.
+-- | Display the board as a user-friendly string. &gt;&gt;&gt; render
+--   (Board "XOX OO X ") &gt; 0 | 1 | 2 &gt; ----------- &gt; 3 | 4 | 5
+--   &gt; ----------- &gt; 6 | 7 | 8
 render :: Board -> String
 
--- | Alternate turns between <a>X</a> and <a>O</a>
+-- | Alternate turns between <a>X</a> and <a>O</a> &gt;&gt;&gt; switchTurn
+--   X O
 switchTurn :: Turn -> Turn
 
 -- | <a>move</a> marks the desired position with the symbol corresponding
---   |to the current player.
+--   to the current player.
 move :: GameState Board Turn -> Int -> GameState Board Turn
 
 -- | <a>possibleMoves</a> returns a list of the remaining valid moves.
+--   &gt;&gt;&gt; possibleMoves (GameState (Board "XXXOOOXX ") O) [8]
 possibleMoves :: GameState Board Turn -> [Int]
 
 -- | Determine whether the game board is empty.
