@@ -26,6 +26,9 @@ data Player
 type Turn = Player
 
 newtype Board
+  -- |'Board' takes a string with the following conventions:
+  -- The character X represents Player 'X'. The character O represents
+  -- Player 'O'. A space represents an empty cell.
   = Board String
   deriving Eq
 
