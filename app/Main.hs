@@ -6,8 +6,22 @@ import Control.Monad (forever, when)
 import System.Exit (exitSuccess)
 import System.Random (randomRIO)
 
-handleMove :: GameState Board Player -> Int -> IO (GameState Board Player)
-handleMove game idx = return (move game idx)
+handleMove :: GameState Board Player -> IO (GameState Board Player)
+--handleMove game idx = return (move game idx)
+handleMove game = do
+    putStrLn "Enter move> "
+    selectedMove <- getLine
+    let idx = validate selectedMove
+     in case idx of 
+          Just idx -> if idx `elem` possibleMoves game
+                         then return (move game idx)
+                         else do
+                            putStrLn "Invalid move"
+                            return game
+                         --else putStrLn "Invalid move"
+          Nothing -> do
+              putStrLn "Invalid move"
+              return game
 
 gameOver :: GameState Board Player -> IO ()
 gameOver game
@@ -35,12 +49,7 @@ runGame :: GameState Board Player -> IO ()
 runGame game = forever $ do
     gameOver game
     print game
-    putStrLn "Enter move> "
-    move <- getLine
-    let idx = validate move
-     in case idx of 
-          Just idx -> if idx `elem` possibleMoves game then handleMove game idx >>= runGame else putStrLn "Invalid move"
-          Nothing -> putStrLn "Invalid move"
+    handleMove game >>= runGame 
 
 main :: IO ()
 main = runGame initBoard
