@@ -1,3 +1,16 @@
+ {-|
+Module      : GameState
+Description : Module with pure code for tic-tac-toe
+Copyright   : (c) Zarak Mahmud, 2020
+License     : GPL-3
+Maintainer  : zarak@hotmail.ca
+Stability   : experimental
+Portability : POSIX
+
+Module containing data structures to represent the game state,
+actions to modify state, and rendering functions to display
+state.
+-}
 module GameState where
 
 import Text.Paint
@@ -6,8 +19,8 @@ import Data.List.Split
 import Data.Function
 
 data Player 
-    = X 
-    | O 
+    = X                         -- ^ Player X
+    | O                         -- ^ Player O
     deriving (Show, Eq, Enum)
 
 type Turn = Player
@@ -16,13 +29,20 @@ newtype Board
   = Board String
   deriving Eq
 
+-- |A board is displayed in the terminal
+-- |wih the following color scheme:
+-- |red X, blue O, and white for everything else.
 instance Show Board where
     show = colorize
 
 data GameState board turn
+    -- | 'GameState' accepts polymorphic types so that the board
+    -- | and/or turn can also be represented as alternative
+    -- | data structures (such as a string, or a list of 'X' for board)
     = GameState board turn 
     deriving Eq
 
+-- |The GameState displays the board along with the current turn.
 instance (Show board, Show turn) => Show (GameState board turn) where
     show (GameState board turn) = "\n" ++ show board ++ "\nTurn: " ++ show turn
 
