@@ -30,15 +30,15 @@ newtype Board
   deriving Eq
 
 -- |A board is displayed in the terminal
--- |wih the following color scheme:
--- |red X, blue O, and white for everything else.
+--  wih the following color scheme:
+--  red X, blue O, and white for everything else.
 instance Show Board where
     show = colorize
 
 data GameState board turn
-    -- | 'GameState' accepts polymorphic types so that the board
-    -- | and/or turn can also be represented as alternative
-    -- | data structures (such as a string, or a list of 'X' for board)
+    -- |'GameState' accepts polymorphic types so that the board
+    --  and/or turn can also be represented as alternative
+    --  data structures (such as a string, or a list of 'X' for board)
     = GameState board turn 
     deriving Eq
 
@@ -65,6 +65,12 @@ colorize board = concatMap applyColor (render board)
             | otherwise = [c]
 
 -- |Display the board as a user-friendly string.
+-- >>> render (Board "XOX OO X ")
+-- >  0 | 1 | 2
+-- > -----------
+-- >  3 | 4 | 5
+-- > -----------
+-- >  6 | 7 | 8
 render :: Board -> String
 render (Board board) =
     unlines .
@@ -75,12 +81,14 @@ render (Board board) =
     zip [0..] board
 
 -- |Alternate turns between 'X' and 'O'
+-- >>> switchTurn X
+-- O
 switchTurn :: Turn -> Turn
 switchTurn X = O
 switchTurn O = X
 
 -- |'move' marks the desired position with the symbol corresponding
--- |to the current player.
+--  to the current player.
 move :: GameState Board Turn -> Int -> GameState Board Turn
 move (GameState (Board board) turn) idx =
     let newBoard = zipWith (\i c -> if i == idx then (head . show) turn else c) [0..] board
@@ -88,6 +96,8 @@ move (GameState (Board board) turn) idx =
     GameState (Board newBoard) (switchTurn turn)
 
 -- |'possibleMoves' returns a list of the remaining valid moves.
+-- >>> possibleMoves (GameState (Board "XXXOOOXX ") O)
+-- [8]
 possibleMoves :: GameState Board Turn -> [Int]
 possibleMoves (GameState (Board board) turn) =
     map fst . filter ((==' ') . snd) $ zip [0..] board
