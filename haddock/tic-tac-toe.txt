@@ -3,7 +3,7 @@
 
 
 -- | Please see the README on GitHub at
---   <a>https://github.com/githubuser/tic-tac-toe#readme</a>
+--   <a>https://github.com/zarak/tic-tac-toe#readme</a>
 @package tic-tac-toe
 @version 0.1.0.0
 
