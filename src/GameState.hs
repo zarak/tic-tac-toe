@@ -52,7 +52,7 @@ instance (Show board, Show turn) => Show (GameState board turn) where
 -- |The length of the side of the board - default value is 3.
 -- Denoted as \( d \) within this documentation.
 dim = 3
--- |The number of cells in the board - \( s = d^2 \).
+-- |The number of cells in the board: \( s = d^2 \).
 size = dim^2
 
 -- |The color of 'X'.
