@@ -6,8 +6,8 @@
 
 ## Install
 Requires GHC 8.8.3 and stack.
-Issue the following commands to download the source code and install the
-`tic-tac-toe-exe` binary.
+Issue the following commands to download the source code and install
+`tic-tac-toe-exe` as an executable.
 ```
 git clone https://github.com/zarak/tic-tac-toe.git
 stack install
