@@ -7,14 +7,25 @@
 @package tic-tac-toe
 @version 0.1.0.0
 
+
+-- | Module containing data structures to represent the game state, actions
+--   to modify state, and rendering functions to display state.
 module GameState
 data Player
+
+-- | Player X
 X :: Player
+
+-- | Player O
 O :: Player
 type Turn = Player
 newtype Board
 Board :: String -> Board
 data GameState board turn
+
+-- | <a>GameState</a> accepts polymorphic types so that the board | and/or
+--   turn can also be represented as alternative | data structures (such as
+--   a string, or a list of <a>X</a> for board)
 GameState :: board -> turn -> GameState board turn
 dim :: Int
 size :: Int
