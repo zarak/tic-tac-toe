@@ -43,5 +43,4 @@ runGame game = forever $ do
           Nothing -> putStrLn "Invalid move"
 
 main :: IO ()
-main = do
-    runGame initBoard
+main = runGame initBoard
