@@ -1,7 +1,6 @@
 # tic-tac-toe
 
-![Continuous Integration](https://github.com/zarak/tic-tac-toe/workflows/Continuous%20Integration/badge.svg)  
-[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
+![Continuous Integration](https://github.com/zarak/tic-tac-toe/workflows/Continuous%20Integration/badge.svg) [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 
 ![](https://media.istockphoto.com/photos/tic-tac-toe-game-picture-id884358528?k=6&m=884358528&s=612x612&w=0&h=0rihYQYvBX7sPnugkddA77c0uDswevGaRD9xScW5kM0=)
 
